@@ -14,7 +14,7 @@ Expense Tracker is a comprehensive mobile application designed to simplify the t
 
 ## Installation
 1. Clone the repository:
-  - https://github.com/Drawins/android-starter-kit.git
+ https://github.com/Drawins/ExpenseTracker.git
 
 
 ## Usage
