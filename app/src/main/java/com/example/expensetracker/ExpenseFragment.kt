@@ -5,55 +5,71 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.expensetracker.RoomDataBase.Expense
+import com.example.expensetracker.ViewModel.ExpenseViewModel
+import com.example.expensetracker.databinding.ExpenseItemBinding
+import com.example.expensetracker.databinding.FragmentExpenseBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ExpenseFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ExpenseFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentExpenseBinding
+    private lateinit var expenseRecyclerView: RecyclerView
+    private lateinit var expenseAdapter: ExpenseAdapter
+    private lateinit var expenseViewModel: ExpenseViewModel
+    private  var expense = emptyList<Expense>()
+    private lateinit var radioGroup: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_expense, container, false)
-    }
+        binding = FragmentExpenseBinding.inflate(inflater , container,false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ExpenseFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ExpenseFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
+        expenseAdapter = ExpenseAdapter()
+        expenseRecyclerView = binding.expenseRecyclerView
+        expenseRecyclerView.adapter = expenseAdapter
+        expenseRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
+        expenseViewModel.readAllExpense.observe(viewLifecycleOwner){
+                expense -> this.expense
+            expenseAdapter.setData(expense)
+        }
+        sortExpense()
+        return binding.root
+    }
+    private fun sortExpense() {
+        radioGroup = binding.radioGroup
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radio_button_date -> {
+                    expenseViewModel.readAllExpenseByDate.observe(viewLifecycleOwner){
+                            expense ->
+                        expenseAdapter.setData(expense)
+                    }
+                }
+                R.id.radio_button_time -> {
+                    expenseViewModel.readAllExpenseByTime.observe(viewLifecycleOwner){
+                            expense ->
+                        expenseAdapter.setData(expense)
+                    }
+                }
+                R.id.radio_button_amount ->{
+                    expenseViewModel.readAllExpenseByAmount.observe(viewLifecycleOwner){
+                            expense->
+                        expenseAdapter.setData(expense)
+                    }
                 }
             }
+        }
     }
 }

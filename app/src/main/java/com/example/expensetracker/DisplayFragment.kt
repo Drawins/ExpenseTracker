@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -30,6 +31,7 @@ class DisplayFragment : Fragment() {
     private lateinit var expenseTextView: TextView
     private lateinit var incomeTextView: TextView
     private lateinit var moreExpense: TextView
+    private lateinit var button: Button
 
 
     private var expenses: List<Expense> = emptyList()
@@ -55,6 +57,8 @@ class DisplayFragment : Fragment() {
         moreExpense = binding.moreExpense
 
 
+
+
         expenseAdapter = ExpenseAdapter()
         recyclerView = binding.expenseRecyclerView
         recyclerView.adapter = expenseAdapter
@@ -63,6 +67,7 @@ class DisplayFragment : Fragment() {
 
         expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
         incomeViewModel = ViewModelProvider(this)[IncomeViewModel::class.java]
+
 
 
         incomeTextView.setOnClickListener {
@@ -75,11 +80,14 @@ class DisplayFragment : Fragment() {
 
         incomeViewModel.readAllIncome.observe(viewLifecycleOwner) { income ->
             this.income = income
+
+            incomeTextView.text = sumIncome.toString()
+            updateBalance()
         }
         incomeViewModel.sumOfIncome.observe(viewLifecycleOwner) { sum ->
             sumIncome = sum
             incomeTextView.text = sumIncome.toString()
-            updateBalance()
+
         }
 
 

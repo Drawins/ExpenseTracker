@@ -8,14 +8,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expenseRecyclerView"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="0dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
     <RadioGroup
         android:id="@+id/radio_group"
@@ -33,14 +33,15 @@
             android:id="@+id/radio_button_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/date"
-            android:layout_marginStart="190dp"/>
+            android:layout_marginStart="190dp"
+            android:text="@string/date" />
 
         <RadioButton
             android:id="@+id/radio_button_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title" />
+            android:text="@string/name" />
+
         <RadioButton
             android:id="@+id/radio_button_amount"
             android:layout_width="wrap_content"
