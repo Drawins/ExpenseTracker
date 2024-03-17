@@ -10,8 +10,6 @@ Expense Tracker is a comprehensive mobile application designed to simplify the t
 - **Sort Expense**:Easily by Date,Title,Amount
 - **Balance Generator**:The app calaculates and displays the difference between your total income and total expense
 
-
-
 ## Installation
 1. Clone the repository:
  https://github.com/Drawins/ExpenseTracker.git
