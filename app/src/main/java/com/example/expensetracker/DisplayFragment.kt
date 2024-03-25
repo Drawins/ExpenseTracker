@@ -30,8 +30,7 @@ class DisplayFragment : Fragment() {
     private lateinit var balanceTextView: TextView
     private lateinit var expenseTextView: TextView
     private lateinit var incomeTextView: TextView
-    private lateinit var moreExpense: TextView
-    private lateinit var button: Button
+
 
 
     private var expenses: List<Expense> = emptyList()
@@ -54,9 +53,6 @@ class DisplayFragment : Fragment() {
         incomeTextView = binding.incomeTextView
         balanceTextView = binding.textViewBalance
         expenseTextView = binding.expenseTextView
-        moreExpense = binding.moreExpense
-
-
 
 
         expenseAdapter = ExpenseAdapter()
@@ -64,32 +60,22 @@ class DisplayFragment : Fragment() {
         recyclerView.adapter = expenseAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
         expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
+
         incomeViewModel = ViewModelProvider(this)[IncomeViewModel::class.java]
 
-
-
-        incomeTextView.setOnClickListener {
-            val action = DisplayFragmentDirections.actionDisplayFragmentToAddIncomeFragment(
-                sumIncome.toString()
-            )
-            findNavController().navigate(action)
-        }
+            incomeViewModel.sumOfIncome.observe(viewLifecycleOwner) { sum ->
+               this.sumIncome = sum
+                incomeTextView.text = sumIncome.toString()
+                updateBalance()
+            }
 
 
         incomeViewModel.readAllIncome.observe(viewLifecycleOwner) { income ->
             this.income = income
-
             incomeTextView.text = sumIncome.toString()
             updateBalance()
         }
-        incomeViewModel.sumOfIncome.observe(viewLifecycleOwner) { sum ->
-            sumIncome = sum
-            incomeTextView.text = sumIncome.toString()
-
-        }
-
 
         expenseViewModel.readAllExpense.observe(viewLifecycleOwner) { expenses ->
             this.expenses = expenses
@@ -107,10 +93,6 @@ class DisplayFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-
-        moreExpense.setOnClickListener {
-            findNavController().navigate(R.id.action_displayFragment_to_expenseFragment)
-        }
     }
     private   fun updateBalance() {
         val resultDouble = sumIncome - sumExpense

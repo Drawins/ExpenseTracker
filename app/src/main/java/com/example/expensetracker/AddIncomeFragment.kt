@@ -30,9 +30,6 @@ class AddIncomeFragment : Fragment() {
         incomeAddButton = binding.addIncomeButton
         incomeViewModel = ViewModelProvider(this)[IncomeViewModel::class.java]
 
-        val args: AddIncomeFragmentArgs by navArgs()
-        incomeEditText.setText(args.income)
-
         button = binding.button
         button.setOnClickListener {
             incomeViewModel.deleteIncome()

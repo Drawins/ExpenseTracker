@@ -11,6 +11,7 @@ import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.expensetracker.LocalNotification.ExpenseNotificationService
 import com.example.expensetracker.RoomDataBase.Expense
 import com.example.expensetracker.ViewModel.ExpenseViewModel
 import com.example.expensetracker.ViewModel.IncomeViewModel
@@ -27,6 +28,7 @@ class AddFragment : Fragment() {
     private lateinit var titleEditText: EditText
     private lateinit var amountEditText: EditText
 
+    private lateinit var service: ExpenseNotificationService
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -40,7 +42,8 @@ class AddFragment : Fragment() {
         titleEditText = binding.titleEditText
         amountEditText = binding.amountEditText
 
-
+        // Initialize service lazily
+        service = ExpenseNotificationService(requireContext())
 
         val addExpenseButton: Button = binding.addExpenseButton
         addExpenseButton.setOnClickListener {
@@ -55,14 +58,14 @@ class AddFragment : Fragment() {
             val formatterTime = DateTimeFormatter.ofPattern("hh:mm a")
             val formattedTime = currentTime.format(formatterTime)
 
-
-
             if (title.isNotEmpty() && amount.isNotEmpty()) {
-                val expense = Expense(0, title, amount, formattedDate,formattedTime)
+                val expense = Expense(0, title, amount, formattedDate, formattedTime)
                 expenseViewModel.addExpense(expense)
                 titleEditText.text.clear()
                 amountEditText.text.clear()
             }
+            service.showNotification()
+
             findNavController().navigate(R.id.action_addFragment_to_displayFragment)
         }
 

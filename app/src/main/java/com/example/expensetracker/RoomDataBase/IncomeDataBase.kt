@@ -25,7 +25,7 @@ abstract class IncomeDataBase : RoomDatabase() {
                     context.applicationContext,
                     IncomeDataBase::class.java,
                     "income_database"
-                ).fallbackToDestructiveMigration()
+                )
                     .build()
                 INSTANCE = instance
                 return instance

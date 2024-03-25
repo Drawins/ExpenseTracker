@@ -38,9 +38,4 @@ class IncomeViewModel(application: Application) : AndroidViewModel(application) 
             incomeRepository.updateIncome(income)
         }
     }
-    fun getSumOfIncome(){
-        viewModelScope.launch {
-            incomeRepository.getSumOfIncome()
-        }
-    }
 }
