@@ -5,6 +5,7 @@
     <!-- Replace POST_NOTIFICATIONS with the correct permission for posting notifications -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".LocalNotification.MyApp"
