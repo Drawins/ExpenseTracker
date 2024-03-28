@@ -21,4 +21,8 @@
     <string name="name">Name</string>
     <string name="update_income">Update Income</string>
     <string name="see_more"><![CDATA[See more >]]></string>
+    <string name="sign_up">Sign Up</string>
+    <string name="if_you_have_an_account_sign_in">If you have an account sign In</string>
+    <string name="sign_in">Sign In</string>
+    <string name="if_you_don_t_have_an_account">If you don\'t have an account</string>
 </resources>
