@@ -10,6 +10,7 @@ Expense Tracker is a comprehensive mobile application designed to simplify the t
 - **Sort Expense**:Easily by Date,Title,Amount
 - **Balance Generator**:The app calaculates and displays the difference between your total income and total expense
 - **Bottom Navigation View**:User can easily navigate throught the application pages using a bottom navigation view
+- **User Authentication **:Using the firebase user authentication user can sign up and sigh out of the application
 
 ## Installation
 1. Clone the repository:
@@ -22,7 +23,8 @@ Expense Tracker is a comprehensive mobile application designed to simplify the t
 3. Enter the title and amount of the expense, then click "Save".
 4. View your expense history on the "Display" screen.
 5. Sort your expense by date,time,amount
-6. view the total balnce you have 
+6. view the total balnce you have
+7. sign up/sign in and also log out
 
 
 ## Contact
