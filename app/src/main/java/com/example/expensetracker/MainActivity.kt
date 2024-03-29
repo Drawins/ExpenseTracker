@@ -2,6 +2,7 @@ package com.example.expensetracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.signInFragment || destination.id == R.id.signUpFragment){
+                bottomNavigation.visibility = View.GONE
+            }else{
+                bottomNavigation.visibility = View.VISIBLE
+            }
             bottomNavigation.menu.findItem(destination.id)?.isChecked = true
         }
     }

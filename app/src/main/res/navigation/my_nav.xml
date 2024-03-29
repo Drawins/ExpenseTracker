@@ -9,13 +9,13 @@
         android:id="@+id/displayFragment"
         android:name="com.example.expensetracker.DisplayFragment"
         android:label="fragment_display"
-        tools:layout="@layout/fragment_display" >
+        tools:layout="@layout/fragment_display">
         <action
             android:id="@+id/action_displayFragment_to_addFragment"
             app:destination="@id/addFragment" />
         <action
             android:id="@+id/action_displayFragment_to_addIncomeFragment"
-            app:destination="@id/addIncomeFragment" />
+            app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_displayFragment_to_expenseFragment"
             app:destination="@id/expenseFragment" />
@@ -30,13 +30,16 @@
             app:destination="@id/displayFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addIncomeFragment"
-        android:name="com.example.expensetracker.AddIncomeFragment"
+        android:id="@+id/profileFragment"
+        android:name="com.example.expensetracker.ProfileFragment"
         android:label="fragment_add_income"
-        tools:layout="@layout/fragment_add_income" >
+        tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_addIncomeFragment_to_displayFragment"
             app:destination="@id/displayFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/expenseFragment"

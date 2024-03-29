@@ -35,19 +35,19 @@ class SignInFragment : Fragment() {
             val password = binding.editTextTextPassword.text.toString()
 
             if (email.isNotBlank() && password.isNotBlank()) {
-                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                    if (it.isSuccessful) {
                         findNavController().navigate(R.id.action_signInFragment_to_displayFragment)
                     } else {
-                        Toast.makeText(requireContext(), task.exception?.message ?: "Authentication failed", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             } else {
-                Toast.makeText(requireContext(), "Please enter both email and password", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Please fill in the required filed", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
     override fun onStart() {
         super.onStart()
         if (firebaseAuth.currentUser != null){
@@ -55,4 +55,3 @@ class SignInFragment : Fragment() {
         }
     }
 }
-

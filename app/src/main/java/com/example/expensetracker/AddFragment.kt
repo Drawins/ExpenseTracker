@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.expensetracker.LocalNotification.ExpenseNotificationService
 import com.example.expensetracker.RoomDataBase.Expense
 import com.example.expensetracker.ViewModel.ExpenseViewModel
-import com.example.expensetracker.ViewModel.IncomeViewModel
 import com.example.expensetracker.databinding.FragmentAddBinding
 import java.text.SimpleDateFormat
 import java.time.LocalTime
@@ -24,10 +23,8 @@ import java.util.Date
 class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
     private lateinit var expenseViewModel: ExpenseViewModel
-    private lateinit var incomeViewModel: IncomeViewModel
     private lateinit var titleEditText: EditText
     private lateinit var amountEditText: EditText
-
     private lateinit var service: ExpenseNotificationService
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -37,7 +34,7 @@ class AddFragment : Fragment() {
     ): View {
         binding = FragmentAddBinding.inflate(inflater, container, false)
         expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
-        incomeViewModel = ViewModelProvider(this)[IncomeViewModel::class.java]
+
 
         titleEditText = binding.titleEditText
         amountEditText = binding.amountEditText

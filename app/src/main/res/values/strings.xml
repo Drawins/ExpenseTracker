@@ -27,4 +27,7 @@
     <string name="if_you_don_t_have_an_account">If you don\'t have an account</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="profile">Profile</string>
+    <string name="button">Button</string>
+    <string name="log_out">Log Out</string>
 </resources>
