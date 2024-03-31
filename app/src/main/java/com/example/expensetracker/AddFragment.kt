@@ -1,5 +1,6 @@
 package com.example.expensetracker
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,6 +28,7 @@ class AddFragment : Fragment() {
     private lateinit var amountEditText: EditText
     private lateinit var service: ExpenseNotificationService
 
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +67,6 @@ class AddFragment : Fragment() {
 
             findNavController().navigate(R.id.action_addFragment_to_displayFragment)
         }
-
         return binding.root
     }
 }

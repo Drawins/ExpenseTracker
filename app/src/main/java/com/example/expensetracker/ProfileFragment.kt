@@ -1,5 +1,7 @@
 package com.example.expensetracker
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,10 +25,31 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater,container,false)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        binding.button.setOnClickListener {
-            firebaseAuth.signOut()
-            findNavController().navigate(R.id.action_profileFragment_to_signInFragment)
-        }
+        binding.textView2.text = "Welcome"
+        signOutUser()
+
         return binding.root
+    }
+
+    private fun signOutUser() {
+        binding.button.setOnClickListener {
+            val dialog = AlertDialog.Builder(requireContext())
+            dialog.apply {
+                setTitle("Sign Out")
+                setMessage("Are you sure you want to sign out?")
+                setNegativeButton("No"){
+                    negative,_ ->
+                    negative.cancel()
+                }
+                setPositiveButton("Yes"){
+                    positive,_ ->
+                    firebaseAuth.signOut()
+                    findNavController().navigate(R.id.action_profileFragment_to_signInFragment)
+                    positive.dismiss()
+                }
+            }
+            dialog.create()
+            dialog.show()
+        }
     }
 }

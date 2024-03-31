@@ -16,7 +16,7 @@ class MyApp:Application() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val channel = NotificationChannel(
                 ExpenseNotificationService.EXPENSE_CHANNEL_ID,
-                "counter",
+                "Expense",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             channel.description = "Used to alert on addition of an income or expense"
