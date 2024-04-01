@@ -19,12 +19,12 @@ Expense Tracker is a comprehensive mobile application designed to simplify the t
 
 ## Usage
 1. Open the Expense Tracker Application on your device.
-2. Click on the "Add Expense" button to add a new expense.
-3. Enter the title and amount of the expense, then click "Save".
-4. View your expense history on the "Display" screen.
-5. Sort your expense by date,time,amount
-6. view the total balnce you have
-7. sign up/sign in and also log out
+3. Click on the "Add Expense" button to add a new expense.
+4. Enter the title and amount of the expense, then click "Save".
+5. View your expense history on the "Display" screen.
+6. Sort your expense by date,time,amount
+7. view the total balnce you have
+8. sign up/sign in and also log out
 
 
 ## Contact
