@@ -63,7 +63,7 @@ class AddFragment : Fragment() {
                 titleEditText.text.clear()
                 amountEditText.text.clear()
             }
-            service.showNotification()
+            service.showNotification(amount, title)
 
             findNavController().navigate(R.id.action_addFragment_to_displayFragment)
         }

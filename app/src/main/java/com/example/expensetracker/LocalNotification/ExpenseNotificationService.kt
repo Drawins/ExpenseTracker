@@ -11,7 +11,7 @@ import com.example.expensetracker.R
 
 class ExpenseNotificationService(private val context: Context) {
     private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    fun showNotification(){
+    fun showNotification(amount:String,title:String){
         val activityIntent = Intent(context,ExpenseFragment::class.java)
         val pendingActivityIntent = PendingIntent.getActivity(
             context,
@@ -22,6 +22,7 @@ class ExpenseNotificationService(private val context: Context) {
         val notification = NotificationCompat.Builder(context, EXPENSE_CHANNEL_ID)
             .setSmallIcon(R.drawable.baseline_add_24)
             .setContentTitle("New Expense Added")
+            .setContentText("$title: $${amount}")
             .setContentIntent(pendingActivityIntent)
             .build()
 
